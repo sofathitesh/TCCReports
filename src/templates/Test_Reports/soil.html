@@ -1,0 +1,17 @@
+{% extends "base.html" %} {% load staticfiles %}
+<html>
+<head>
+    {% block title %}
+    <title>Form</title>
+    {% endblock %}
+</head>
+<body>
+    {% block content %}
+    <form method="POST" action='{% url 'Reports' %}' >
+        {% csrf_token %}
+<a href={% static 'Download' %}{{r}}>Download</a>
+
+{{dd}}
+    {% endblock %}
+</body>
+</html>

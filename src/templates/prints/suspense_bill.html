@@ -1,0 +1,83 @@
+{% extends 'bill_base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset='UTF-8'>
+    {% block title %}
+    <title>Suspense Bill</title>
+    {% endblock %}
+    {% load set_var %}
+</head>
+<body>
+    {% block content %}
+    <div class = "bill-left">
+        <div><span id ="highlight">STC No: </span>{{ stc_no.stc_no }} </div>
+        <div><span id ="highlight">PAN No. </span>{{ pan_no.pan_no }} </div>
+    </div>
+    <div class="container">
+        <h2> Bill</h2>
+    </div>
+    <div class = "bill-left">
+        <div><span id ="highlight">No. </span>GNDEC/TCC/B/{{id}} <span id = "dated"><span id ="highlight">Dated : </span>{{ date|date:"d M, Y" }}</span></div>
+        <p> To </p>
+        <p> {{purchase_order.delivery_address}} </p>
+        <p>
+        {% if buyer.buyer__first_name %}
+        {{buyer.buyer__first_name}} {{buyer.buyer__last_name}}
+        {% else %}
+        {{buyer.buyer__customer__title}}
+        {% endif %}
+        , {{address.address__street_address}}, {{address.address__city}}
+            {% if address.address__pin != 'None' and address.address__pin != '' %}
+            -{{address.address__pin}}
+            {% endif %}
+            , {{address.address__province}}</p>
+        {% if buyer_name.company %}
+        <p><b>Agency:</b> {{buyer_name.company}}</p>
+        {% endif %}
+            <div><span id ="highlight"> Ref: </span>{{ref_letter}} {{ref.reference}} dated {{ref.reference_date}}</div>
+            <div><span id ="highlight"> Site: </span>{{site.delivery_address}}</div>
+        </div>
+        <table class="data" border="1px">
+            <tr>
+                <th>Charges For Following</th>
+                <th>Total</th>
+            </tr>
+            <tr>
+                {% for bill_values in bill_values %}
+                <td>
+                    {{bill_values.0}}
+                    {%for value in bill_values.1%}
+                    {{value}}
+                    {% endfor %}
+                </td>
+                <td id="total">
+                    {{bill_values.2}}
+                </td>
+            </tr>
+            {% endfor %}
+            <td><b>Total </b></td>
+                <td id="total"><b>{{totalplusdelivery}}</b></td>
+            </tr>
+            <tr>
+                {% if taxes_applied %}
+                {% for taxesapplied in taxes_applied %}
+                {% for surcharge in surcharge %}
+                {% if surcharge.id == taxesapplied.surcharge %}
+                <td> {{ surcharge.tax_name }} @ {{ surcharge.value }} % </td>
+                {% endif %}
+                {% endfor %}
+                <td id="total">  {{taxesapplied.tax }} </td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+            <tr>
+                <td><b>Total &#8377; </b>(Rupees {{total_in_words}} only)</td>
+                <td id="total"><b>{{grand_cost}}</b></td>
+            </tr>
+        </table>
+        <div>
+    {% endblock %}
+    <!-- Dean is liable to change-->
+</body>
+</html>

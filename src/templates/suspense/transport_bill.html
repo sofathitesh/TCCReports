@@ -1,0 +1,71 @@
+{% extends 'bill_base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block title %}
+    <title>Transport Bill</title>
+    {% endblock %}
+</head>
+<body>
+    {% block content %}
+    <div class="container">
+        <h2 >Transport Bill</h2>
+    </div>
+        <div class="voucher-no"><b>Bill No:</b> {{ voucherid }}
+        <div style = "text-align:right; float:right">
+            <b>Dated:</b> {{ date_of_generation }}
+        </div>
+    </div>
+
+    <div style="clear: both">
+    </div>
+    <p><span id ="highlight"> Vehicle No. </span >{{ vehicle}} </span>
+    </p>
+    <div id = "transport_content">
+        <table border="1" align="center">
+            <tr>
+                <th>Date of Use</th>
+                <th>No of Kms</th>
+                <th>Rate</th>
+                <th>Amount</th>
+            </tr>
+            {% for date,km,amount in zip_data %}
+            <tr>
+                <td>
+                    {{ date }} 
+                </td>
+                <td>
+                    {{ km }}
+                </td>
+                <td>
+                    {{ rate }}
+                </td>
+                <td>
+                    {{ amount }}
+                </td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td colspan = "3"><center><b>Total &#8377;</b></center></td>
+                <td> {{ total_amount }}</td>
+            </tr>
+        </table>
+    </div>
+    <div id="transportbill"><b>Dean Testing and Consultancy</b></div>
+    <div id="transportfooter">TA.DA Bill have been entered on page...... of TA/DA & Other Charges register. Head other charges
+        <div id="transportbill">Dean Testing and Consultancy</div>
+        <br>
+    <div>Passed for payment for &#8377; {{ total_amount }}/- (Rupees {{ words }} only)</div>
+    <div class='footertable'>
+        <table>
+            <tr>
+                <td>Dean T&amp;C</td>
+                <td>Supdt. Accounts</td>
+                <td id="total">Director</td>
+            </tr>
+        </table>
+    </div>
+    </div>
+    {% endblock %}
+</body>
+</html>

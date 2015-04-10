@@ -1,0 +1,398 @@
+\documentclass{sett}
+\pagesettings
+\usepackage{ragged2e}
+
+
+\title{
+	{{sitename}}
+}
+
+
+\begin{document}
+\maketitle
+\clearpage
+
+\heading{GURU NANAK DEV ENGINEERING COLLEGE, LUDHIANA}
+{Accredited by NBA (AICTE), New Delhi (ISO 9001:2000 Certified)}
+{Testing \& Consultancy Cell }
+{tcc@gndec.ac.in }
+{0161-2491193}
+\sethead{List of Faculty/Experts}
+\listdata{Geotechnical}{Dr. J.N.Jha, Ph.D\\
+Prof. Kulbir Singh Gill,M.E\\
+Dr. B.S.Walia, Ph.D.\\
+Prof. Harjinder Singh, M.E\\
+Prof. Gurdeepak Singh, M.Tech.\\
+}
+\listdata{Structure}{Dr. Harpal Singh, Ph.D\\
+Dr. Hardeep Singh Rai, Ph.D\\
+Prof. Harvinder Singh, M.Tech\\
+Dr. Jagbir Singh, Ph.D.\\
+Prof. Kanwarjit Singh Bedi, M.Tech.\\
+Prof. Parshant Garg, M.Tech\\
+Prof. Harpreet Kaur, M.Tech.\\
+Prof. Inderpreet Kaur, M.Tech.
+}
+
+\listdata{Highway}{Prof. Kulbir Singh Gill, M.E\\}
+\listdata{Material Testing}{Dr. Jagbir Singh, Ph.D.\\
+Prof. Kanwarjit Singh Bedi, M.Tech.\\
+}
+
+\listdata{Material Testing}{Dr. Jagbir Singh, Ph.D.\\
+Prof. Kanwarjit Singh Bedi, M.Tech.\\
+}
+
+\listdata{Survey}{Dr. B.S.Walia, Ph.D.\\
+}
+
+\listdata{Chemical Testing}{Dr. R.P.Singh, Ph.D.\\
+}
+
+\listdata{Environmental Engg}{Prof. Puneet Pal Singh, M.E\\
+}
+\clearpage
+\reportheading{SOIL INVESTIGATION REPORT}
+\begin{enumerate}
+\item{
+\reportdetail{Date of Testing}{
+	
+	{{dateoftest}}
+}}
+\item{\reportdetail{Type of Structure}{
+	
+	{{strtype}}
+}}
+\item{\reportdetail{Site location}{ Latitude :  
+	{{lati}}
+ Longitude : 
+ 	{{logitude}}
+ }}
+\item{\reportdetail{Tested in Presence of}{
+{{p1}}\\
+{{p2}}
+}}
+\item{\reportdetail{Report Submitted to}{
+{{s1}}\\
+{{s2}}\\
+{{s3}}
+}}
+\item{\reportdetail{Report Prepared by}{Dr. J. N. Jha\\
+Prof. Kulbir Singh Gill\\
+ Dr. B. S. Walia}}
+\end{enumerate}
+\clearpage
+\section{Introduction}
+The soil investigation for the proposed \textbf{
+	{{sitename}}
+} had been taken up on request of 
+	\textbf{
+	{{s1}}
+	},
+	\textbf{
+	{{s2}}
+	},
+	\textbf{
+	{{s3}}
+	}
+ .The field soil investigation as per requirements was carried out on 
+\textbf{
+{{dateoftest}}
+}
+  by testing team of this institution in the presence of 
+\textbf{
+{{p1}}
+},
+\textbf{
+{{p2}}
+}
+ of the concerned department.\\
+The purpose of this soil investigation was to determine the nature of the subsoil stratum and the safe net
+allowable bearing capacity of the soil.
+
+\section{Field Soil Investigation}
+{{bore}} bore holes were tested in the field Standard Penetration Test (S.P.T) was carried out at the proposed site for field soil investigation. The S.P.
+Test was carried out as per I.S. Code 2131-1981 in the soil deposits at the foundation level or at an
+interval of 1.5 m or at the location where change of soil strata takes place during the testing process. The
+samples of the soil both disturbed and tube samples were collected at different depths and were properly
+sealed in air-tight plastic bags after labelling them carefully to maintain the natural moisture content for
+laboratory testing.
+\section{Laboratory Testing}
+The various samples (disturbed and tube) collected during field soil investigation were tested in the
+laboratory (as per Standard Methods) for finding.
+\begin{enumerate}
+\item {Grain size analysis and wet analysis}
+\item {Atterberg's limits}
+\item{Field moisture content}
+\item{Bulk density}
+\item{Direct/triaxial shear/Unconfined compression tests}
+\end{enumerate}
+\section{Safe bearing capacity}
+As per I.S. Code 6403-1981, the least of the following shall be taken as safe net allowable bearing
+capacity of the soil.
+\begin{enumerate}
+\item{The safe net allowable bearing capacity from shear considerations is obtained by dividing net
+ultimate bearing capacity by a suitable factor of safety.}
+\item{The safe net allowable bearing pressure that can be imposed on the base of the foundation
+without the settlement exceeding a permissible value is calculated either from settlement
+analysis or from the Standard Penetration Test Values(N)whichever is applicable depending
+upon the nature of sub soil strata.}
+\end{enumerate}
+\section{Underground Water Table}
+The underground (i.e. sub-soil) water was encountered at a depth {{watertable}} m at the time of field soil
+investigation.
+\clearpage
+\subsection{CALCULATION OF SILT FACTOR}
+
+The silt factor was found from the average size of the bed particles for {{siltf}} m depth below the bed level of the.\\
+
+\vspace{0.5cm}
+
+\begin{tabular}{ |m{10em}|m{10em}|m{10em}|m{10em}| }
+\hline
+ \textbf{SIEVE SIZE IN mm I} & \textbf{AVERAGE SIZE OF SIEVE II OPENING IN mm}  & \textbf{PERCENTAGE MATERIAL RETAINED III} & \textbf{PRODUCT(II xIII)}\\
+\hline
+1.180-0.600 &0.8900 & {{p1}} & {{pm1}} \\
+\hline
+0.600-0.425 &0.5125 & {{p2}} & {{pm2}} \\
+\hline
+0.425-0.300s &0.3625 & {{p3}} & {{pm3}} \\
+\hline
+0.300-0.150 &0.2250 &  {{p4}} & {{pm4}} \\
+\hline
+0.150-0.075 & 0.1125 & {{p5}} & {{pm5}} \\
+\hline
+\multicolumn{4}{|c|}{ \raggedleft{ (II xIII)    =  
+
+{{bedp}}
+ 
+ }
+ } \\
+\hline
+\end{tabular}\\
+
+\slitfactor{
+	{{bedp}}
+}{
+	{{siltfactor}}
+}{
+	{{siltfactor}}
+}{
+	{{silt1}}
+}
+\vspace{0.5cm}
+
+\subsection{Calculation of Depth of Foundation}\\
+
+\gen{
+	{{dischargeq}}
+}{
+	{{qv}}
+}{
+	{{canal}}
+}{
+	{{bwidth}}
+}{
+	{{unitq}}
+}{
+	{{silt1}}
+}{
+	{{normalq}}
+}{
+	{{max2r}}
+}{
+	{{supply}}
+}
+
+\reftwo{
+	{{max2r}}
+}{
+	{{supply}}
+}{
+	{{fsft}}
+}{
+	{{fsm}}
+}{
+	{{canal}}
+}{
+	{{bedlt}}
+}{
+	{{sayv}}
+}
+
+\section{Proposed Structure}
+The substructure i.e. foundation of the proposed Bridge is taken in the form of 
+{{openwall}}
+ foundation to be laid at a depth of 
+ {{dfv}} 
+ m below bed level of the 
+ {{canal}}
+ .  The least soil properties have been taken for calculating the bearing capacity of soil for the following types of foundation.\\
+ \subsection{
+ Foundation} 
+ 
+ \openwall{
+ {{openwall}}
+ }{
+ {{canal}}
+ }{
+ {{dfv}}
+ }{
+ {{length}}
+ }{
+ {{widthb}}
+ }\\ 
+
+ The data obtained from the field soil investigation and the laboratory tests have been used in the
+preparation of this report.
+
+\section{Bearing Capacity Calculations}
+
+\subsection{Bearing Capacity Based on Shear Considerations}
+(As per I.S.Code - 6403:1981)\\
+\subsection{
+ Foundation}
+
+ \openwall{
+ {{openwall}}
+ }{
+ {{canal}}
+ }{
+ {{dfv}}
+ }{
+ {{length}}
+ }{
+ {{widthb}}
+ }\\
+
+The soil properties at the foundation level i.e. at 1.67 m depth are:\\
+
+\soilproperty{
+	{{gamao}}
+}{
+	{{oc}}
+}{
+	{{ophay}}
+}{
+	{{ophayfe}}
+}
+
+Bearing Capacity factors are:\\
+
+\bearingcapacity{
+	{{nc}}
+}{
+	{{nq}}
+}{
+	{{ny}}
+}
+
+Shape factors are:\\
+
+\shapefactor{
+}{
+	{{scsq}}
+}{
+	{{sy}}
+}
+
+Depth factors are:\\    
+
+\depthfactor{
+	{{dc}}
+}{
+	{{dqdy}}
+}\\
+
+Water table correction factor, w' = {{o_w}}\\
+
+Ultimate net bearing capacity, $q_u$' = 0.67 x {{o_c}} x {{nc}} x {{scsq}} x {{dc}} + {{gamao}} x {{dfv}} x(1 - {{nq}}) x {{scsq}} x {{dqdy}} +0.5 x {{gamao}} x {{bwidth}} x {{dqdy}} x {{o_w}}\\
+= {{o_peg}} = {{total}} kN/$m^2$ \\	
+
+Safe net allowable bearing capacity = $q_u'$/2.5 = {{total}}/2.5 = {{ot2}} kN/$m^2$
+
+\section{Bearing Capacity Based on Standard Penetration Test Value}
+(As per I.S. Code -6403:1981)\\
+\hspace{1.1cm}
+\begin{tabularx}{\textwidth}{|*{6}{l|}}
+\hline
+ \multicolumn{1}{|m{1cm}|}{Sr No.} &\multicolumn{1}{m{2cm}|}{Depth(m)} &\multicolumn{1}{m{2.5cm}|}{Overburden pressure (kN/m\textsuperscript{2})}
+&\multicolumn{1}{m{2cm}|}{Correction Factor} &\multicolumn{1}{m{2cm}|}{Observesd Value of N} &\multicolumn{1}{m{3.3cm}|}{Corrected Value of N}\\
+\hline
+ {{table}}
+\end{tabularx}
+
+\hspace{1cm}
+
+\depth{
+	{{openwall}}
+}{
+	{{canal}}
+}{
+	{{dfv}}
+}{
+	{{bwidth}}
+}\\
+
+\standardvalue{
+	{{bwidth}}
+}{
+	{{nv}}
+}{
+	{{sv}}
+}{
+	{{o_w}}
+}{
+	{{value}}
+}{
+	{{net}}
+}\\
+
+\standardtwo{
+	{{openwall}}
+}{
+	{{length}}
+}{
+	{{bwidth}}
+}{
+	{{dfv}}
+}{
+	{{canal}}
+}{
+	{{gross}}
+}
+
+
+\section{Remarks:}
+
+\remark{
+{{openwall}}
+}{
+	{{length}}
+}{
+	{{bwidth}}
+}{
+	{{dfv}}
+}{
+	{{canal}}
+}{
+	{{net}}
+}{
+	{{gross}}
+}{
+	{{silt1}}
+}{
+	{{siltf}}
+}
+
+\footer{(Dr. B. S. Walia)\\
+Associate Professor\\
+Civil Engg. Department}{(Prof. Kulbir Singh Gill)\\
+Associate Professor\\
+Civil Engg. Department}
+
+\footer{(Dr. J. N. Jha)\\
+H.O.D., Civil Engg. Department}{(Dr. H. S. Rai)\\
+Dean Testing \& Consultancy
+    }
+\end{document}

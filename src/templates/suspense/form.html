@@ -1,0 +1,37 @@
+{% extends "base.html" %} 
+
+<html>
+{% block title %}
+<title>Form</title>
+{% endblock %}
+<body>
+  {% block content %}
+  {% if errors %}
+  <div class="alert alert-danger">
+    {{ errors }}
+  </div>
+  {% endif %}
+  {% if tada %}
+  <form method="POST" action={% url 'librehatti.suspense.views.tada_result' %} >
+    {% else %}
+    <form method="POST" action=''>
+      {% endif %}
+      {% csrf_token %}
+      <table>
+       {% if message %}
+       <div class="alert alert-danger">
+         {{ message }}
+       </div>
+       {% endif %}
+       {% if messages %}
+       <div class="alert alert-success">
+        {{ messages }} 
+      </div>
+      {% endif %}
+       {{form.as_table}}
+     </table>
+     <input type="submit" class="btn btn-info btn-large" value="Submit" id="button1">
+   </form>
+   {% endblock %}
+ </body>
+ </html>

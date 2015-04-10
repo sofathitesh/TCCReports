@@ -1,0 +1,177 @@
+{% extends 'bill_base.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset='UTF-8'>
+    {% block title %}
+    <title>Proforma Bill</title>
+    {% endblock %}
+    {% load set_var %}
+</head>
+<body>
+    {% block content %}
+    <div class = "bill-left">
+        <div><span id ="highlight">STC No: </span>{{ stc_no.stc_no }} </div>
+        <div><span id ="highlight">PAN No. </span>{{ pan_no.pan_no }} </div>
+    </div>
+    <div class="container">
+        <h2>Proforma Bill</h2>
+    </div>
+    <div class = "bill-left">
+        <div><span id ="highlight">No. </span>GNDEC/TCC/B/{{quoted_order_id}} <span id = "dated"><span id ="highlight">Dated : </span>{{ date }}</span></div>
+        <p> To </p>
+        <p> {{purchase_order.delivery_address}} </p>
+        <p>
+        {% if buyer.buyer__first_name %}
+        {{buyer.buyer__first_name}} {{buyer.buyer__last_name}}
+        {% else %}
+        {{buyer.buyer__customer__title}}
+        {% endif %}
+        , {{address.address__street_address}}, {{address.address__city}}
+            {% if address.address__pin != 'None' and address.address__pin != '' %}
+            -{{address.address__pin}},
+            {% endif %}
+            , {{address.address__province}}</p>
+        {% if buyer_name.company %}
+        <p>Agency: {{buyer_name.company}}</p>
+        {% endif %}
+            <div><span id ="highlight"> Ref: </span>{{ref_letter}} {{ref.reference}} dated {{ref.reference_date}}</div>
+            <div><span id ="highlight"> Site: </span>{{site.delivery_address}}</div>
+        </div>
+        <table class="data" border="1px">
+            <tr>
+                <th>Charges For Following</th>
+                <th>Description</th>
+                <th>Per</th>
+                <th>Total</th>
+            </tr>
+            <tr>
+                {% for bill_values in bill_values %}
+                <td>
+                    {{bill_values.0}}
+                    {%for value in bill_values.1%}
+                    {{value}}
+                    {% endfor %}
+                </td>
+                <td>
+                    {%for value in bill_values.2%}
+                    {% if not forloop.last %}
+                    {{value}}
+                    {% endif %}
+                    {% if value == 'no_unit' and forloop.last %}
+                    sample/s
+                    {% elif value != 'no_unit' and forloop.last %}
+                    {{value}}
+                    {% endif %}
+                    {% endfor %}
+                </td>
+                <td>
+                    {%for value in bill_values.3%}
+                    {{value}}
+                    {% endfor %}
+                </td>
+                <td id="total">
+                    {{bill_values.4}}
+                </td>
+            </tr>
+            {% endfor %}
+            {% if total_discount %}
+            <tr>
+                <td>Discount</td>
+                <td colspan="2" rowspan="{{tax_count}}"></td>
+                <td id="total">{{total_discount}}</td>
+            </tr>
+            {% endif %}
+            <tr>
+                <td><b>Total </b></td>
+                {% if total_discount %}
+                {% else %}
+                <td  colspan="2" rowspan="{{tax_count}}"></td>
+                {% endif %}
+                <td id="total"><b>{{total_cost}}</b></td>
+            </tr>
+            {% if delivery_charges != 0 %}
+            <tr>
+                <td>Transportation Charges</td>
+                <td id="total">{{delivery_charges}}</td>
+            </tr>
+            <tr>
+                <td>Total Amount</td>
+                <td id="total">{{totalplusdelivery}}</td>
+            </tr>
+            {% endif %}
+            <tr>
+                {% if taxes_applied %}
+                {% for taxesapplied in taxes_applied %}
+                {% for surcharge in surcharge %}
+                {% if surcharge.id == taxesapplied.surcharge %}
+                <td> {{ surcharge.tax_name }} @ {{ surcharge.value }} % </td>
+                {% endif %}
+                {% endfor %}
+                <td id="total">  {{taxesapplied.tax }} </td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+            <tr>
+                <td><b>Total &#8377; </b>({{total_in_words}} only)</td>
+                <td id="total"><b>{{grand_cost}}</b></td>
+            </tr>
+        </table>
+        <div>
+            <div class="position">
+                <b>Terms & Conditions:</b>
+            </div>
+            <div style="clear:both;">
+            </div>
+            <div id="notelist">
+                <ol>
+                    {% for value in permanent_note %}
+                    <li>{{value.note}}</li>
+                    {% endfor %}
+                    {% for value in quoted_note %}
+                    <li>{{value.note}}</li>
+                    {% endfor %}
+                    <li>Bank Details For RTGS Payment:</li>
+                </ol>
+            </div>
+            <div id="account">
+                <table>
+                    <tr>
+                        <td>Acount Holder</td>
+                        <td>:</td>
+                        <td>{{account_holder}}</td>
+                    </tr>
+                    <tr>
+                        <td>Name of Bank</td>
+                        <td>:</td>
+                        <td>{{name_of_bank}}</td>
+                    </tr>
+                    <tr>
+                        <td>Branch</td>
+                        <td>:</td>
+                        <td>{{branch}}</td>
+                    </tr>
+                    <tr>
+                        <td>Account No.</td>
+                        <td>:</td>
+                        <td>{{online_account}}</td>
+                    </tr>
+                    <tr>
+                        <td>IFSC Code No.</td>
+                        <td>:</td>
+                        <td>{{ifsc_code}}</td>
+                    </tr>
+                </table>
+            </div>
+            {% endblock %}
+            {% block extracontent %}
+            <div id = "declaration">
+                I/We here by agree to the terms & conditions as mentioned above.
+            </div>
+            <div id="declare-sign">
+             <br>(Signature of Client/Deptt. Representative)
+         </div>
+         {% endblock %}        <!-- Dean is liable to change-->
+</body>
+</html>

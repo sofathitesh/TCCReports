@@ -1,0 +1,58 @@
+{% extends "base.html" %} 
+
+{% block extrastyle %}
+{% endblock %} 
+
+{% block extrajs %}
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("[name='date']").datepicker({
+            changeMonth: true,
+            changeYear: true,dateFormat:"yy-mm-dd"
+        }); 
+        $("#button2").click(function() {
+
+        //Insert just after the kilo input in p element
+        $("#id_kilometer").parent("p").clone().insertAfter($("#id_date").parent("p"));
+        var dateelement = $("#id_date").parent("p").clone();
+        var newdateelement = $("<input class='form-control' type='text' name='date' />");
+
+        //We have to replace the date field with new one everytime as browser
+        //will confuse it with the cloned element and events will not work
+        dateelement.children("input[name='date']").replaceWith(newdateelement);
+        dateelement.insertAfter($("#id_date").parent("p"));
+        $("[name='date']").datepicker({
+            changeMonth: true,
+            changeYear: true,dateFormat:"yy-mm-dd"
+        }); 
+    });
+    });
+</script>
+{% endblock %} 
+{% block content %}
+<table>
+    <tr>
+        <td>
+            <form action='{% url 'librehatti.suspense.views.transportbill' %}' method='POST'>
+                {% if messages %}
+                <div class="alert alert-success">
+                    {{ messages }} 
+                </div>
+                {% endif %}
+                {% if message %}
+                <div class="alert alert-danger">
+                    {{ message }} 
+                </div>
+                {% endif %}
+                {% csrf_token %}
+                {{TransportForm.as_p}}
+                <input type="hidden" value="{{ session }}" name="session" />
+                <input type="hidden" value="{{ voucher }}" name="voucher" />
+
+                <input type="submit" class="btn btn-info btn-large" value="Generate Bill" name='button1' id='button1' />
+                <input type="button" class="btn btn-info btn-large" value="Add Another" name='button2' id='button2' />
+            </form>
+        </td>
+    </tr>
+</table>
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends 'bill_base.html' %}
+<html>
+<head>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/voucher.css' %}">
+
+    {% block title %}
+    <title>Other Charges</title>
+    {% endblock %}
+</head>
+
+<body>
+    {% block content %}
+    <div class="othertable">
+      <table>
+        <tr>
+          <td>OT Vr. No.</td>
+          <td>{{ voucher_no }}</td>
+        </tr>
+        <tr>
+          <td>Date:</td>
+          <td>_________</td>
+        </tr>
+      </table>
+    </div>
+    <div style="clear:both;">
+        </div>
+    <div>A sum of &#8377;{{complete_total}}/- (TA/DA staff &#8377;{{ta_da}}, Other charges &#8377;{{transplusother}}/- has been deposited by:-
+    </div>
+    <div>
+    {% if address.purchase_order__buyer__first_name %}
+    {{address.purchase_order__buyer__first_name}} {{address.purchase_order__buyer__last_name}}
+    {% else %}
+    {{address.purchase_order__buyer__customer__title}}
+    {% endif %}
+    , {{address.purchase_order__buyer__customer__address__street_address}}, {{address.purchase_order__buyer__customer__address__city}}
+    {% if address.purchase_order__buyer__customer__address__pin != 'None' and address.purchase_order__buyer__customer__address__pin != '' %}
+    , {{address.purchase_order__buyer__customer__address__pin}}
+    {% endif %}
+       , {{address.purchase_order__buyer__customer__address__province}}</div>
+        <div>Vide receipt no. {{purchase_order}} dated {{order_date}} and was transferred vide letter no.________dated________</div>
+        <div>A sum of &#8377;{{total}}/- was spent for testing on as detailed below.</div>
+        <br>
+        <div id = "othercharges">
+            <table border='1px'>
+                <tr>
+                    <td>T.A/D.A Staff </td>
+                    <td  id = "pos-right">{{ ta_da }}</td>
+                </tr>
+                <tr>
+                    <td>Boring Charges </td>
+                    <td  id = "pos-right">{{boring_charges}}</td>
+                </tr>
+                <tr>
+                    <td>Labour Charges </td>
+                    <td  id = "pos-right">{{ suspense_clearance.labour_charge }}</td>
+                </tr>
+                <tr>
+                    <td>Car/Taxi Charges </td>
+                    <td  id = "pos-right">{{ suspense_clearance.car_taxi_charge }}</td>
+                </tr>
+                <tr>
+                    <td><b>TOTAL</b></td>
+                    <td  id = "pos-right"><b>{{total}}</b></td>
+                </tr>
+            </table>
+        </div>
+        <div class="position">
+        {% if transport != 0 %}
+        The Transport Bill No. {{transport.id}} dated {{transport.date_of_generation}} for &#8377;{{transport.total}}/- is attached. The sum of &#8377;{{transport.total}}/- may be transferred from other charges to Consultancy Transport Fund.
+        {% endif %}
+        The sum of &#8377;{{ta_da}}/- spent  by Dean Testing & Consultancy may Please be paid to him</div>
+        <div class = "footer1">DEAN Testing and Consultancy
+        </div>
+        {% endblock %}
+</body>
+</html>       

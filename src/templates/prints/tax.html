@@ -1,0 +1,57 @@
+{% extends 'bill_base.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset='UTF-8'>
+    {% block title %}
+    <title>Service Tax Details</title>
+    {% endblock %}
+    {% load set_var %}
+</head>
+<body>
+    {% block content %}
+    <div class="container">
+        <h2>Tax Details</h2>
+    </div>
+<div class='bill-left'>
+	<span id='highlight'>
+		Receipt No.</span>{{id}}
+	<span id='dated'>
+		<span id='highlight'>
+		Dated:</span>
+		{{bill.purchase_order__date_time |date:"d M, Y"}}
+	</span>
+</div>
+<br>
+    <table class="data" border="1px">
+        <tr>
+            <tr>
+                <td>
+                	Charges for Testing/Checking/Designing
+                </td>
+                <td id='total'>
+                  {{bill.totalplusdelivery}}
+              </td>
+          </tr>
+          {% for value in details %}
+          <td>
+            {{ value.surcharge__tax_name}} @ {{ value.surcharge__value }}
+        </td>
+        <td id='total'>
+           {{ value.tax }}
+       </td>
+   </tr>
+   {% endfor %}
+   <tr>
+    <td>
+       Total Amount
+   </td>
+   <td id='total'>
+      {{grand_total}}
+  </td>
+</tr>
+{% endblock %}
+<!-- Dean is liable to change-->
+</body>
+</html>

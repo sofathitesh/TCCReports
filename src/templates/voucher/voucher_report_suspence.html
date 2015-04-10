@@ -1,0 +1,79 @@
+{% extends 'bill_base.html' %}
+<html>
+<head>
+	{% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/voucher.css' %}">
+    {% block title %}
+    <title>Voucher</title>
+    {% endblock %}
+</head>
+<body>
+	{% block content %}
+    <br>
+<div class='bill-left'>
+	<span id='highlight'>
+		Receipt No./Suspence Voucher:</span>
+			{{ job }}/{{suspense_voucher}}
+	<span id='dated'>
+		<span id='highlight'>Dated:</span>
+		{{date |date:"d M, Y"}}
+	</span>
+</div>
+<br>
+    <div style="clear:both;">
+        </div>
+    <div class="designation">Director,</div>
+    <br>
+    A sum of &#8377; {{cost.amount_received}}/- ( Rupees {{ inwords }} only ) has been deposited by 
+    {% if buyer.buyer__first_name %}
+    {{ buyer.buyer__first_name}} {{ buyer.buyer__last_name }}
+    {% else %}
+    {{buyer.buyer__customer__title}}
+    {% endif %}
+    , {{address.address__street_address}}, {{address.address__city}}, 
+    {% if address.address__pin != 'None' and address.address__pin != '' %}
+     {{address.address__pin}},
+     {% endif %} 
+     {{address.address__province}} {% if buyer_name.company %}
+      Agency: {{buyer.buyer__customer__company}}
+        {% endif %} by {{method}}, on account of {{material}}.
+
+    This amount is kept in suspence till clearance. <br/><br/>
+    <div class="receipt-detail">Receipt No. {{job}}   </div>
+    <div class="receipt-detail">Dated: {{date}}</div>
+    <div id = "pos-left">
+        <br>
+        <table  border = "1px">
+            <tr>
+               <td>Bill Amount</td>
+               <td id = "pos-right">{{cost.totalplusdelivery}}.00</td>
+           </tr>
+           {% for value in tax %}
+           <tr>
+               <td>{{ value.surcharge__tax_name }}  @ {{ value.surcharge__value }}% </td>
+               <td  id = "pos-right">{{ value.tax }}.00</td>
+           </tr>
+           {% endfor %}
+        <tr>
+            <td>Total Amount </td>
+            <td  id = "pos-right"> {{ cost.grand_total}}.00</td>
+        </tr>
+        <tr>
+           <td>TDS</td>
+           <td id = "pos-right">{{tds.tds}}.00</td>
+       </tr>
+       <tr>
+           <td>Balance</td>
+           <td id = "pos-right">{{cost.amount_received}}.00</td>
+       </tr>
+   </table>
+</div>
+<br><br>
+<div id="voucher-no"><b>Accounts Clerk (Consultancy)</b>
+    <div style = "text-align:right; float:right">
+        <b>Dean Testing & Consultancy</b>
+    </div>
+</div>
+{% endblock %}
+</body>
+</html>

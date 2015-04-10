@@ -1,0 +1,67 @@
+{% extends "base.html" %} 
+<html>
+<head>
+    {% block title %}
+    <title>
+        Suspense Job
+    </title>
+    <style type="text/css">
+    .clearance_table{
+        width: 200% !important;
+        margin-top: 50px;
+    }
+    </style>
+    {% endblock %}
+</head>
+<body>
+    {% block content %}
+    <div class='clearance-success'>
+        <p class='success-message'>Clearance <span class='green'>
+            Successful</span></p></div>
+            <div class="clearance_table">
+            <table>
+                <tr>
+                    <th>Session:</th>
+                    <td>{{session}}</td>
+                </tr>
+                <tr>
+                    <th>Voucher No.</th>
+                    <td>{{voucher_no}}</td>
+                </tr>
+                <tr>
+                    <th>Labour Charge:</th>
+                    <td>{{labour_charge}}</td>
+                </tr>
+                <tr>
+                    <th>Car Taxi Charge:</th>
+                    <td>{{car_taxi_charge}}</td>
+                </tr>
+                <tr>
+                    <th>Boring Charge External:</th>
+                    <td>{{boring_charge_external}}</td>
+                </tr>
+                <tr>
+                    <th>Boring Charge Internal:</th>
+                    <td>{{boring_charge_internal}}</td>
+                </tr>
+                <tr>
+                    <th>Lab Testing Staff:</th>
+                    <td>{{lab_testing_staff}}</td>
+                </tr>
+                <tr>
+                    <th>field Testing Staff:</th>
+                    <td>{{field_testing_staff}}</td>
+                </tr>
+                <tr>
+                    <th>Test Date:</th>
+                    <td>{{test_date}}</td>
+                </tr>
+                <tr>
+                    <th>Clear Date:</th>
+                    <td>{{clear_date}}</td>
+                </tr>
+            </table>
+            </div>
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,134 @@
+{% extends 'base_register.html' %}
+{% load i18n %} {% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% block title %}
+    <title>Register Index</title>
+  {% endblock %}
+</head>
+<body>
+  {% block content %}
+  <div class = 'list-registers'>
+    <div class='view-list'>
+        <table border="1px">
+           <tr>
+              <th>Title</th>
+              <th>Options</th>
+              {% for value in list_of_registers %}
+              <tr>
+               <td>{{value.title}}</td>
+               <td>
+               <a href = '{% url 'view_register' %}?{{value.selected_fields}}'>
+               View Register</a></td>
+           </tr>
+           {% endfor %}
+           <tr>
+           <td>Daily Report
+           </td>
+           <td>
+             <a href =
+              '{% url "librehatti.reports.register.daily_report_result"%}'>
+              Daily Report Register
+              </a>
+           </td>
+           </tr>
+           <tr>
+           <td>Consultanct Share
+           </td>
+           <td>
+             <a href =
+              '{% url "librehatti.reports.register.consultancy_funds_report"%}'>
+              Consultanct Share
+              </a>
+           </td>
+           </tr>
+           <tr><td>TDS Register</td>
+           <td><a href =
+              '{% url "librehatti.reports.register.tds_report_result"%}'>
+              TDS Register
+           </a></td>
+           </tr>
+           <tr><td>Payment Register</td>
+           <td><a href =
+              '{% url "librehatti.reports.register.payment_register"%}'>
+              Payment Register
+           </a></td>
+           </tr>
+           <tr><td>Suspense Clearance Register</td>
+           <td><a href =
+              '{% url "librehatti.reports.register.suspense_clearance_register"%}'>
+              Suspense Clearance Register
+           </a></td>
+           </tr>
+           <tr><td>Service Tax Statement</td>
+           <td><a href =
+              '{% url "librehatti.reports.register.servicetax_register"%}'>
+              Service Tax Statement
+           </a></td>
+           </tr>
+           <tr><td>Main Register</td>
+           <td><a href =
+              '{% url "librehatti.reports.register.main_register"%}'>
+              Main Register
+           </a></td>
+           </tr>
+           <tr><td>Proforma Register</td>
+           <td><a href =
+              '{% url "librehatti.reports.register.proforma_register"%}'>
+              Proforma Register
+           </a></td>
+           </tr>
+           <tr><td>Non-Payment Register</td>
+           <td><a href =
+              '{% url "librehatti.reports.register.non_payment_register"%}'>
+              Non-payment Register
+           </a></td>
+           </tr>
+          <tr>
+          <td>Client Register</td>
+           <td><a href =
+              '{% url "librehatti.reports.register.client_register"%}'>
+              Client Register
+           </a></td>
+           </tr>
+           <tr>
+          <td>Lab Report</td>
+           <td><a href =
+              '{% url "librehatti.reports.register.lab_report"%}'>
+              Lab Report
+           </a></td>
+           </tr>
+           <tr>
+          <td>Suspense Register</td>
+           <td><a href =
+              '{% url "librehatti.reports.register.suspense_register"%}'>
+              Suspense Register
+           </a></td>
+           </tr>
+           <tr>
+          <td>Tada</td>
+           <td><a href =
+              '{% url "librehatti.reports.register.tada_form"%}'>
+              Tada And Other Charges
+           </a></td>
+           </tr>           
+          <td>Tada Staff</td>
+           <td><a href =
+              '{% url "librehatti.reports.register.tada_staff"%}'>
+              Tada Staff Register
+           </a></td>
+           </tr>           
+          <td>Job Register</td>
+           <td><a href =
+              '{% url "librehatti.reports.register.org_form"%}'>
+              Job Register
+           </a></td>
+           </tr>                      
+       </table>
+   </div>
+</div>
+{% endblock %}
+</body>
+</html>
